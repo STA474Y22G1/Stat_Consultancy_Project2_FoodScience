@@ -9,7 +9,7 @@ library(tidyverse)
 oilData <- read_csv("Tidy Data.csv")
 
 #oilData$`Palm olein concentration(C)` <- as.factor(oilData$`Palm olein concentration(C)`)
-oilData$`Replicate No` <- as.factor(oilData$`Replicate No`)
+# oilData$`Replicate No` <- as.factor(oilData$`Replicate No`)
 oilData <- rename(oilData, Concentration = `Palm olein concentration(C)`, 
                   Replicate = `Replicate No`)
 
@@ -20,23 +20,52 @@ ui <- dashboardPage(
     selectInput("Series", label = h4("Select Series"), 
                 choices = unique(oilData$Series)),
     selectInput("Concentration", label = h4("Select Palm Olein Concentration"), 
-                choices = sort(unique(oilData$Concentration))),
+                choices = NULL),
     selectInput("Replicate", label = h4("Select Replicate"), 
-                choices = unique(oilData$Replicate))
+                choices = NULL)
   ),
   dashboardBody(
     fluidRow(
-           box(plotlyOutput("plot", height = 570), width = 12)
+      box(plotlyOutput("plot", height = 570), width = 12)
     )
     
   )
 )
 
-server <- function(input, output) {
+server <- function(input, output, session) {
+  
+  # updating filters
+  series <- reactive({
+    req(input$Series)
+    filter(oilData, Series == input$Series)
+  })
+  
+  concentration <- reactive({
+    req(input$Concentration)
+    filter(series(), Concentration == input$Concentration)
+  })
+  
+  replicate <- reactive({
+    req(input$Replicate)
+    filter(concentration(), Replicate == input$Replicate)
+  })
+  
+  # observing event to update next filter
+  observeEvent(series(), {
+    updateSelectInput(session, "Concentration", 
+                      choices = sort(unique(series()$Concentration)))
+  })
+  
+  observeEvent(concentration(), {
+    updateSelectInput(session, "Replicate", 
+                      choices = unique(concentration()$Replicate), selected = 1)
+  })
+  
+  
+  
+  
   output$plot <- renderPlotly({
-    plot <- oilData %>% filter(Series == input$Series) %>% 
-      filter(Concentration == input$Concentration) %>%
-      filter(Replicate == input$Replicate) %>%
+    plot <- replicate() %>%
       ggplot(aes(x = `Wave Number (cm-1)(W)`, y = `Absorption (A)`)) + 
       geom_line() + 
       theme_bw() +
