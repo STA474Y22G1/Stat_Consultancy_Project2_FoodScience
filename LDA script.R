@@ -10,8 +10,10 @@ library(psych)
 
 # Enable the r-universe repo
 #options(repos = c(
+
 #fawda123 = 'https://fawda123.r-universe.dev',
 #CRAN = 'https://cloud.r-project.org'))
+
 #install.packages('ggord')
 
 
@@ -60,4 +62,15 @@ tab1
 
 
 
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 0a7fecb5d4402976154dfa3bf7247e819186cb8b
 
