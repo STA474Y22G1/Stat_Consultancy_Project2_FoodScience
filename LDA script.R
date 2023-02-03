@@ -2,7 +2,18 @@
 
 #Libraries
 library(tidyverse)
+library(magrittr)
 library(MASS)
+library(ggord)
+library(klaR)
+library(psych)
+
+# Enable the r-universe repo
+#options(repos = c(
+  #fawda123 = 'https://fawda123.r-universe.dev',
+  #CRAN = 'https://cloud.r-project.org'))
+#install.packages('ggord')
+
 
 # load the data
 LDA_data <- read_csv("PCAData.csv")
@@ -26,9 +37,36 @@ result
 
 
 #LDA
-df2 <- LDA_data%>% select(-c("Index",  "Concentration", "Replicate"))
-view(df2)
+
+df2 = subset(LDA_data, select = -c(Index, Concentration, Replicate)) 
+df2
+View(df2) 
 lda_results <- lda(Series~., df2)
 lda_results
+
+# bi plot 
+ggord(lda_results, df2$Series, ylim = c(-1, 1)) 
+
+# Confusion Matrix 
+p1 <- predict(lda_results, df2)$class
+View(p1) 
+tab1 <- table(Predicted = p1, Actual = df2$Series)
+tab1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
