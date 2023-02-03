@@ -7,6 +7,7 @@ library(MASS)
 library(ggord)
 library(klaR)
 library(psych)
+library(heplots)
 
 # Enable the r-universe repo
 #options(repos = c(
@@ -30,16 +31,18 @@ view(df1)
 shapiro.test(df1$`3009`)
 
 
-
-#check for group homogenity - Bartlett test
-result = bartlett.test(`3002` ~Series , 
-                       data = LDA_data)
+# Check for group homogenity (Have to check again)
+# Bartlett test
+result = bartlett.test(`3002` ~Series , data = LDA_data)
 result
+
+# Box M test
+box_M <- boxM(df2[, 2:5], df2[, "Series"])
+box_M
 
 
 
 #LDA
-
 df2 = subset(LDA_data, select = -c(Index, Concentration, Replicate)) 
 df2
 View(df2) 
@@ -58,19 +61,4 @@ tab1
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 0a7fecb5d4402976154dfa3bf7247e819186cb8b
 
