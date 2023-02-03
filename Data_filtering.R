@@ -12,7 +12,13 @@ filterdata2<-filterdata1 %>% filter(W>=3000 & W<=3010)
 filterdata3<-filterdata1 %>% filter(W>=1650 & W<=1660)
 filterdata4<-filterdata1 %>% filter(W>=1105 & W<=1120)
 
+obs<-nrow(filterdata2) + nrow(filterdata3) + nrow(filterdata4)
+
 #PCA
-PCAdata<-rbind(filterdata2, filterdata3, filterdata4)
+PCAdata<-rbind(filterdata2, filterdata3, filterdata4) %>% select(-c("Series", "Replicate", "Concentration")) %>%
+  mutate(Index=1:n())
+
+PCAdata<-pivot_wider(PCAdata, names_from = W, values_from = A)
 
 write_csv(PCAdata,"PCAData.csv")
+View(PCAdata)
