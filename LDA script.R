@@ -45,7 +45,7 @@ lda_results <- lda(Series~., df2)
 lda_results
 
 # bi plot 
-ggord(lda_results, df2$Series, ylim = c(-1, 1)) 
+# ggord(lda_results, df2$Series, ylim = c(-1, 1)) 
 
 # Confusion Matrix 
 p1 <- predict(lda_results, df2)$class
