@@ -18,7 +18,7 @@ ui <- dashboardPage(
   dashboardHeader(title= h3("Spectrum Viz")),
   dashboardSidebar(
     selectInput("Series", label = h4("Select Series"), 
-                choices = unique(oilData$Series)),
+                choices = unique(oilData$Series), multiple = TRUE),
     selectInput("Concentration", label = h4("Select Palm Olein Concentration"), 
                 choices = NULL),
     selectInput("Replicate", label = h4("Select Replicate"), 
@@ -53,7 +53,8 @@ server <- function(input, output, session) {
   # observing event to update next filter
   observeEvent(series(), {
     updateSelectInput(session, "Concentration", 
-                      choices = sort(unique(series()$Concentration)))
+                      choices = sort(unique(series()$Concentration)), 
+                      selected = c("Pure Palm Oil","Pure VCO"))
   })
   
   observeEvent(concentration(), {
