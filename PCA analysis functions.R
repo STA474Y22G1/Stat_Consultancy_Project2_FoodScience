@@ -1,5 +1,5 @@
 # Importing Data set
-oildata<-read_csv("Tidy Data.csv") # This is for training set
+dataset<-read_csv("Tidy Data.csv") # This is for training set
 
 #####################################################################################################
 
@@ -85,7 +85,7 @@ Data_Analysis<-function(dataset){
 
 #######################################################################################################
 
-Data_Analysis(oildata)
+Data_Analysis(dataset)
 
 
 
