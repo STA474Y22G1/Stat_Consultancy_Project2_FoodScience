@@ -1,14 +1,12 @@
 # Importing data set
 pcadata <- read_csv("PCAData.csv")
 
-# variable names
-variables <- colnames(data)[-c(1:4)]
-
 # data set for box plot
-data_boxplot <- pcadata %>% pivot_longer(cols = 5:ncol(pcadata), names_to = "W", values_to = "A")
+data_boxplot <- pcadata %>% pivot_longer(cols = 5:ncol(pcadata), names_to = "W", 
+                                         values_to = "A")
 
 # Box plot
-plot <- data_boxplot %>% ggplot(aes(x = A, y = W)) + geom_boxplot() + coord_flip()
+plot <- data_boxplot %>% ggplot(aes(x = A, y = W)) + geom_boxplot() 
 plot
 
 # variances are different for each variable. Therefore use correlation matrix for PCA.
@@ -45,9 +43,15 @@ summary(pc)
 # Based on scree plot first three PC were selected.
 # Based on summary it explains more than 80% variablity.
 
+# extracting PCA scores
+Y1 <- pc$x[ , 1]
+Y2 <- pc$x[ , 2]
+Y3 <- pc$x[ , 3]
 
+# PC data
+pcs <- cbind(pcadata[,1:4], Y1, Y2, Y3)
 
-
+write_csv(pcs, "PC_Scores.csv")
 
 
 
