@@ -10,55 +10,77 @@ library(psych)
 library(heplots)
 
 # Enable the r-universe repo
-#options(repos = c(
-
-#fawda123 = 'https://fawda123.r-universe.dev',
-#CRAN = 'https://cloud.r-project.org'))
-
-#install.packages('ggord')
+# options(repos = c(
+# 
+# fawda123 = 'https://fawda123.r-universe.dev',
+# CRAN = 'https://cloud.r-project.org'))
+# 
+# install.packages('ggord')
 
 
 # load the data
+
 LDA_data <- read_csv("outlier_removed_pc.csv")
 view(LDA_data)
 
+
 # Normality Test
-df1 <- LDA_data %>% filter(Series == "Pure VCO")
-view(df1)
-#df1 <- df1 %>% rename(var1 = `3010`)
-
-#shapiro.test(df1$var1)
-shapiro.test(df1$`3009`)
+# Group into Pure VCO and Adulterated
+Pure_VCO <- LDA_data %>% filter(Series == "Pure VCO")
+Adulterated <- LDA_data %>% filter(Series == "Adulterated")
 
 
-# Check for group homogenity (Have to check again)
-# Bartlett test
-result = bartlett.test(`3002` ~Series , data = LDA_data)
-result
+# Apply shapiro test to check the Normality
+shapiro.test(Pure_VCO$Y1)
+shapiro.test(Pure_VCO$Y2)
+shapiro.test(Pure_VCO$Y3)
 
+shapiro.test(Adulterated$Y1)
+shapiro.test(Adulterated$Y2)
+shapiro.test(Adulterated$Y3)
+
+
+# Checking the Assumption of Equal Covariance 
 # Box M test
-box_M <- boxM(df2[, 2:5], df2[, "Series"])
-box_M
+boxm <- heplots::boxM(LDA_data[, c(5:7)], LDA_data$Series)
+boxm
 
 
 
 #LDA
-df2 = subset(LDA_data, select = -c(Index, Concentration, Replicate)) 
-df2
-View(df2) 
-lda_results <- lda(Series~., df2)
+LDA_test_data = subset(LDA_data, select = -c(Index, Concentration, Replicate)) 
+ 
+lda_results <- lda(Series~., LDA_test_data)
 lda_results
 
 # bi plot 
 # ggord(lda_results, df2$Series, ylim = c(-1, 1)) 
 
 # Confusion Matrix 
-p1 <- predict(lda_results, df2)$class
-View(p1) 
-tab1 <- table(Predicted = p1, Actual = df2$Series)
-tab1
+pred <- predict(lda_results, LDA_test_data)$class
+ 
+confusion_matrix <- table(Predicted = pred, Actual = LDA_test_data$Series)
+confusion_matrix
 
 
+###################################################################################
+
+# QDA
+# Didn't use training set and testing set
+
+QDA_test_data = subset(LDA_data, select = -c(Index, Concentration, Replicate)) 
+
+qda_results <- qda(Series~., QDA_test_data)
+qda_results
+
+# bi plot 
+# ggord(lda_results, df2$Series, ylim = c(-1, 1)) 
+
+# Confusion Matrix 
+pred <- predict(qda_results, QDA_test_data)$class
+
+confusion_matrix <- table(Predicted = pred, Actual = QDA_test_data$Series)
+confusion_matrix
 
 
 
