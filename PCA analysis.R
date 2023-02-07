@@ -51,18 +51,4 @@ Y3 <- pc$x[ , 3]
 # PC data
 pcs <- cbind(pcadata[,1:4], Y1, Y2, Y3)
 
-write_csv(pcs, "PC_Scores.csv")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# write_csv(pcs, "PC_Scores.csv")

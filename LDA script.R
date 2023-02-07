@@ -19,7 +19,7 @@ library(heplots)
 
 
 # load the data
-LDA_data <- read_csv("PCAData.csv")
+LDA_data <- read_csv("outlier_removed_pc.csv")
 view(LDA_data)
 
 # Normality Test
