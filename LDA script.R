@@ -4,10 +4,11 @@
 library(tidyverse)
 library(magrittr)
 library(MASS)
-library(ggord)
+#library(ggord)
 library(klaR)
 library(psych)
 library(heplots)
+library(car)
 
 # Enable the r-universe repo
 # options(repos = c(
@@ -19,8 +20,8 @@ library(heplots)
 
 
 # load the data
-
-LDA_data <- read_csv("outlier_removed_pc.csv")
+#LDA_data <- read_csv("outlier_removed_pc.csv")
+LDA_data <- read_csv("PC_Scores.csv")
 view(LDA_data)
 
 
@@ -42,8 +43,17 @@ shapiro.test(Adulterated$Y3)
 
 # Checking the Assumption of Equal Covariance 
 # Box M test
-boxm <- heplots::boxM(LDA_data[, c(5:7)], LDA_data$Series)
-boxm
+# boxm <- heplots::boxM(LDA_data[, c(5:7)], LDA_data$Series)
+# boxm
+
+# Levene’s test
+levene_data <- rbind(Pure_VCO, Adulterated)
+levene_result_Y1 = leveneTest(Y1 ~ Series, levene_data)
+levene_result_Y2 = leveneTest(Y2 ~ Series, levene_data)
+levene_result_Y3 = leveneTest(Y3 ~ Series, levene_data)
+
+# print the result
+print(result)
 
 
 
