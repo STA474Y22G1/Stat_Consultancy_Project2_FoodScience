@@ -61,12 +61,32 @@ Data_Analysis<-function(dataset){
     Y3 <- pc$x[ , 3]
     
     # PC data
-    PC_Scores <- cbind(pcadata[,1:4], Y1, Y2, Y3)
+    PC_Scores <- cbind(pcadata[,1:4], Y1, Y2, Y3) %>% as.data.frame()
+    
+    # Creating data set for LDA
+    
+    mahalanobis_data <- pcs %>% select(Y1, Y2, Y3)
+    
+    mahalanobis_data$mahalanobis <- mahalanobis(mahalanobis_data, 
+                                                colMeans(mahalanobis_data), 
+                                                cov(mahalanobis_data))
+    
+    mahalanobis_data$pvalue <- pchisq(mahalanobis_data$mahalanobis, df=2, lower.tail=FALSE)
+    
+    mahalanobis_data <- cbind(pcs[,1:4], mahalanobis_data)
+    
+    # removing outliers
+    
+    outlier_removed_pc <- mahalanobis_data %>% filter(pvalue > 0.001)
+    View(outlier_removed_pc)
+    
     
 ######################################################################################################
     
     ## LDA Analysis
-   
+    
+    
+    
      
     
     

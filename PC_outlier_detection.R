@@ -20,6 +20,8 @@ mahalanobis_data$mahalanobis <- mahalanobis(mahalanobis_data,
 
 mahalanobis_data$pvalue <- pchisq(mahalanobis_data$mahalanobis, df=2, lower.tail=FALSE)
 
+mahalanobis_data <- cbind(pc_data[,1:4], mahalanobis_data)
+
 View(mahalanobis_data)
 
 # write_csv(mahalanobis_data, "mahalanobis_data.csv")
