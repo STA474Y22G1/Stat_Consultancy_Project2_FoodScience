@@ -33,7 +33,7 @@ Data_Analysis<-function(dataset){
   
   ## PCA Analysis
   pcadata <-  PCAdata
-  pcadata_v2 <- pcadata %>% select(-c(Index:Replicate)) 
+  pcadata_v2 <- pcadata %>% subset(select = -c(Index, Series, Concentration, Replicate))
  
   # PC calculation
    pc <- prcomp(pcadata_v2,
@@ -66,25 +66,32 @@ Data_Analysis<-function(dataset){
     
 ######################################################################################################
     
-    ## LDA Analysis
+    ## DA Analysis
     
+    # load the data
+    DA_data <- PC_Scores
+  
+    # Group into Pure VCO and Adulterated
+    Pure_VCO <- DA_data %>% filter(Series == "Pure VCO")
+    Adulterated <- DA_data %>% filter(Series == "Adulterated")
     
+    # Checking the Assumption of Equal Covariance 
+    # Levene’s test
+    levene_data <- rbind(Pure_VCO, Adulterated)
+    levene_result_Y1 = leveneTest(Y1 ~ Series, levene_data)
+    levene_result_Y2 = leveneTest(Y2 ~ Series, levene_data)
+    levene_result_Y3 = leveneTest(Y3 ~ Series, levene_data)
     
-     
-    
-    
-    
-    
-    
-    
-    
-    
+    # QDA
+    QDA_test_data = subset(DA_data, select = -c(Index, Concentration, Replicate)) 
+
+    qda_results <- qda(Series~., QDA_test_data)
     
 
 #########################################################################################################    
   
     ## Outputs
-    list(Scree_pot=p, Summary_PCA=Summary_PCA)
+    list(Scree_pot=p, Summary_PCA=Summary_PCA,qda_results)
 }
 
 #######################################################################################################

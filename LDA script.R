@@ -1,10 +1,6 @@
 # LDA for OIL data
 
 #Libraries
-library(tidyverse)
-library(magrittr)
-library(MASS)
-#library(ggord)
 library(klaR)
 library(psych)
 library(heplots)

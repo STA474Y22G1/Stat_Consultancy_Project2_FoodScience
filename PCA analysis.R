@@ -14,14 +14,14 @@ plot
 # ------------------------------------------------------------------------------
 
 # data set for PCA
-pcadata_v2 <- pcadata %>% select(-c(Index:Replicate)) 
+pcadata_v2 <- pcadata %>% subset(select = -c(Index, Series, Concentration, Replicate))
 
 pc <- prcomp(pcadata_v2,
              center = TRUE,
              scale. = TRUE)
 attributes(pc)
 
-print(pc)
+print(pc) # PC Coefficents
 
 
 
@@ -52,7 +52,7 @@ Y3 <- pc$x[ , 3]
 pcs <- cbind(pcadata[,1:4], Y1, Y2, Y3) %>% as.data.frame()
 
 
-mahalanobis_data <- pcs %>% select(Y1, Y2, Y3)
+mahalanobis_data <- pcs %>% subset(select = c(Y1, Y2, Y3))
 
 mahalanobis_data$mahalanobis <- mahalanobis(mahalanobis_data, 
                                             colMeans(mahalanobis_data), 
@@ -68,4 +68,25 @@ outlier_removed_pc <- mahalanobis_data %>% filter(pvalue > 0.001)
 View(outlier_removed_pc)
 
 write_csv(outlier_removed_pc, "outlier_removed_pc.csv")
+
+
+test_pcs <- predict(pc, newdata = pcadata_v2)
+test_pcs3 <- data.frame(Y1 = test_pcs[,1],
+                        Y2 = test_pcs[,2],
+                        Y3 = test_pcs[,3])
+test_pcs3 <- as.data.frame(cbind(pcadata$Series, test_pcs3))
+
+# Confusion Matrix 
+pred <- predict(qda_results, test_pcs3)$class
+
+
+
+
+
+
+
+
+
+
+
 
