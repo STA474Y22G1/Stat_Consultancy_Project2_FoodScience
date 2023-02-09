@@ -1,0 +1,22 @@
+---
+title: "Appendix"
+output: pdf_document
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Loading Packages
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(GGally)
+library(plotly)
+library(MASS)
+library(car)
+```
+
+# PCA_QDA_Function
+```{r}
+
+```
