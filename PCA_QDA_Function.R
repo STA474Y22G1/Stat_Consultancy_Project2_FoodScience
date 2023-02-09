@@ -136,7 +136,7 @@ Data_Analysis<-function(Training, Testing){
   #########################################################################################################    
   
   ## Outputs
-  list(Scree_pot=p, Summary_PCA=Summary_PCA, levene_result_Y1, levene_result_Y2, levene_result_Y3, qda_results, confusion_matrix)
+  list(`Scree Plot`=p, `PCA Summary`=Summary_PCA,`Levene test for PCA1` =levene_result_Y1, `Levene test for PCA2` =levene_result_Y2, `Levene test for PCA3` =levene_result_Y3, `QDA Results`= qda_results, `Confusion Matrix`= confusion_matrix)
 }
 
 #######################################################################################################
