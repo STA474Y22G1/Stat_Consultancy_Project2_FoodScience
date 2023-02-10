@@ -9,7 +9,7 @@ Data_Analysis<-function(Training, Testing){
   
   ## Training Data prep
   Training <- rename(Training, Concentration = `Palm olein concentration(C)`, 
-                    Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
+                     Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
   
   # Filtering Wavelenghts
   filtertraindata2<-Training %>% filter(W>=3000 & W<=3010)
@@ -36,7 +36,7 @@ Data_Analysis<-function(Training, Testing){
   ######################################################################################################
   # Testing data prep
   Testing <- rename(Testing, Concentration = `Palm olein concentration(C)`, 
-                     Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
+                    Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
   
   # Filtering Wavelenghts
   filtertestdata2<-Testing %>% filter(W>=3000 & W<=3010)
@@ -62,7 +62,7 @@ Data_Analysis<-function(Training, Testing){
   
   ######################################################################################################
   ## PCA Analysis
- 
+  
   # PC calculation
   pc <- prcomp(pcatraindata_v2,
                center = TRUE,
