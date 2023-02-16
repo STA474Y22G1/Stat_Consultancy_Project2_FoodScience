@@ -82,7 +82,7 @@ PLS_Analysis2 <-function(Training, Validation){
   predicted_PCR <- predictions*100
   
   predictionTable <- data.frame(`Series Label` = PLSValidationdata$Series, 
-                                `Predicted Concentration` = predicted_PCR)
+                                `Predicted Concentration (%)` = predicted_PCR)
   
   ##########################################################################
   ## Outputs

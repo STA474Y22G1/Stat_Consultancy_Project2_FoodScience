@@ -81,7 +81,7 @@ PLS_Analysis1<-function(Training, Testing){
   predicted_PLS <- predictions*100
   
   predictionTable <- data.frame(Series = PLStestdata$Series, 
-                                `Predicted Concentration` = predicted_PLS)
+                                `Predicted Concentration (%)` = predicted_PLS)
   
   
   # Model performance metrics
