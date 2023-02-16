@@ -5,7 +5,7 @@ Testing<-read_csv("Testing Data.csv") # This is for testing set
 #====================================================================================
 
 # Function 
-PLS_Function1<-function(Training, Testing){
+PLS_Analysis1<-function(Training, Testing){
   ## Training Data 
   Training <- rename(Training, Concentration = `Palm olein concentration(C)`, 
                      Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
