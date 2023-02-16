@@ -1,11 +1,11 @@
 # Importing Data sets
 Training<-read_csv("Training Data.csv") # This is for training set
-Prediction<-read_csv("Prediction Data.csv") # This is for testing set
+Prediction<-read_csv("Prediction Data.csv") # This is for prediction set
 
 #####################################################################################################
 
 # Function for Data analysis
-Data_Analysis<-function(Training, Prediction){
+PC_QD_Analysis2<-function(Training, Prediction){
   
   ## Training Data prep
   Training <- rename(Training, Concentration = `Palm olein concentration(C)`, 
@@ -40,9 +40,9 @@ Data_Analysis<-function(Training, Prediction){
                     Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
   
   # Filtering Wavelengths
-  filterpredictiondata2<-Testing %>% filter(W>=3000 & W<=3010)
-  filterpredictiondata3<-Testing %>% filter(W>=1650 & W<=1660)
-  filterpredictiondata4<-Testing %>% filter(W>=1105 & W<=1120)
+  filterpredictiondata2<-Prediction %>% filter(W>=3000 & W<=3010)
+  filterpredictiondata3<-Prediction %>% filter(W>=1650 & W<=1660)
+  filterpredictiondata4<-Prediction %>% filter(W>=1105 & W<=1120)
   
   # Combining filtered datasets
   PCApredictiondata<-rbind( filterpredictiondata2, filterpredictiondata3, filterpredictiondata4) 
@@ -80,11 +80,12 @@ Data_Analysis<-function(Training, Prediction){
   DA_data <- PC_Scores
   
   # QDA
-  QDA_test_data = subset(DA_data, select = -c(Index, Concentration, Replicate)) 
+  QDA_data = subset(DA_data, select = -c(Index, Concentration, Replicate)) 
+  qda_results <- qda(Series~., QDA_data)
  
   #########################################################################################################    
   
-  ## Prediction from testing set
+  ## Prediction from prediction set
   
   # Predicting PCs
   prediction_pcs <- predict(pc, newdata = pcapredictiondata_v2)
@@ -109,7 +110,7 @@ Data_Analysis<-function(Training, Prediction){
 
 #######################################################################################################
 
-Data_Analysis(Training, Prediction)
+PC_QD_Analysis2(Training, Prediction)
 
 
 
