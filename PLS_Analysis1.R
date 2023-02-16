@@ -73,7 +73,7 @@ PLS_Analysis1<-function(Training, Testing){
   )
  
   # Summarize the final model
-  summary <- summary(model$finalModel)
+  s <- summary(model$finalModel)
   
   ####################################################################################
   ## Prediction for testing dataset
@@ -94,7 +94,7 @@ PLS_Analysis1<-function(Training, Testing){
   
   ## Outputs
   
-  list(PLS_Model = model, `PLS_Summary`= summary, `Predicted values for testing set` = predictionTable, 
+  list(PLS_Model = model, `PLS_Summary`= s, `Predicted values for testing set` = predictionTable, 
        `Model Performance` = peformance_values)
   
   
