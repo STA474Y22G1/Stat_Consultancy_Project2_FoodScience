@@ -5,7 +5,7 @@ Validation <- read_csv("Validation.csv") # This is for validation set
 #====================================================================================
 
 # Function 
-PLS_Function2 <-function(Training, Validation){
+PLS_Analysis2 <-function(Training, Validation){
   ## Training Data 
   Training <- rename(Training, Concentration = `Palm olein concentration(C)`, 
                      Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
@@ -86,12 +86,6 @@ PLS_Function2 <-function(Training, Validation){
   
   predictionTable <- data.frame(Series = PLSValidationdata$Series, `Predicted Concentration` = predicted_PCR)
   
-  # RMSE
-  sqrt(mean((PLSValidationdata$Concentration - predictions)^2))
-  
-  # R2
-  cor(PLSValidationdata$Concentration, predictions) ^ 2
-  
   #########################################################################################
   
   ## Outputs
@@ -104,5 +98,5 @@ PLS_Function2 <-function(Training, Validation){
 
 # Inputs for function
 
-PLS_Function2(Training, Validation)
+PLS_Analysis2(Training, Validation)
 
