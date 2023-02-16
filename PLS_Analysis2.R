@@ -1,6 +1,6 @@
 # Importing Data setets
 Training<-read_csv("Training Data.csv") # This is for training set
-Validation <- read_csv("Validation.csv") # This is for validation set
+Validation <- read_csv("Prediction Data.csv") # This is for validation set
 
 #====================================================================================
 
@@ -42,13 +42,11 @@ PLS_Analysis2 <-function(Training, Validation){
     data = PLStraindata,
     method = 'pls'
   )
-  model
   
-  plot(model)
   
   ####################################################################################
   
-  # Prediction for validation set
+  # Prediction for validation data set (Validation --> Prediction Data)
   
   ## Validation Data 
   Validation <- rename(Validation, Concentration = `Palm olein concentration(C)`, 
@@ -84,7 +82,7 @@ PLS_Analysis2 <-function(Training, Validation){
   predictions = predict(model, newdata = PLSValidationdata[,2:ncolplsvalidation])
   predicted_PCR <- predictions*100
   
-  predictionTable <- data.frame(Series = PLSValidationdata$Series, `Predicted Concentration` = predicted_PCR)
+  predictionTable <- data.frame(`Series Label` = PLSValidationdata$Series, `Predicted Concentration` = predicted_PCR)
   
   #########################################################################################
   

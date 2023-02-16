@@ -71,31 +71,31 @@ PLS_Analysis1<-function(Training, Testing){
     data = PLStraindata,
     method = 'pls'
   )
-  model
-  
-  plot(model)
+ 
+  # Summarize the final model
+  summary <- summary(model$finalModel)
   
   ####################################################################################
   ## Prediction for testing dataset
   
   predictions = predict(model, newdata = PLStestdata[,3: ncolplstest])
-  predicted_PCR <- predictions*100
+  predicted_PLS <- predictions*100
   
-  predictionTable <- data.frame(Series = PLStestdata$Series, `Predicted Concentration` = predicted_PCR)
+  predictionTable <- data.frame(Series = PLStestdata$Series, `Predicted Concentration` = predicted_PLS)
   
   
-  # RMSE
-  RMSE <- sqrt(mean((PLStestdata$Concentration - predictions)^2))
-  
-  # R2
-  R <- cor(PLStestdata$Concentration, predictions) ^ 2
+  # Model performance metrics
+  peformance_values <- data.frame(
+    RMSE = caret::RMSE(predictions, PLStestdata$Concentration),
+    Rsquare = caret::R2(predictions, PLStestdata$Concentration)
+  )
   
   #########################################################################################
   
   ## Outputs
   
-  list(`PLS_Summary`= summary, PLS_Model = model, `Predicted values for testing set` = predictionTable, 
-       RMSE = RMSE, `R squared` = R)
+  list(PLS_Model = model, `PLS_Summary`= summary, `Predicted values for testing set` = predictionTable, 
+       `Model Performance` = peformance_values)
   
   
 }
@@ -104,5 +104,5 @@ PLS_Analysis1<-function(Training, Testing){
 
 # Inputs for function
 
-PLS_Function1(Training, Testing)
+PLS_Analysis1(Training, Testing)
 
