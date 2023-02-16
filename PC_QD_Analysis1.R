@@ -99,14 +99,6 @@ PC_QD_Analysis1<-function(Training, Testing){
   Y2 <- pc$x[ , 2]
   Y3 <- pc$x[ , 3]
   
-  # Bi plot of 1st two PCs
-  biplot <- ggbiplot(pc, obs.scale = 1, var.scale = 1, 
-                groups = pcatraindata$Series, ellipse = TRUE, 
-                circle = TRUE)
-  biplot <- biplot + scale_color_discrete(name = '')
-  biplot <- biplot + theme(legend.direction = 'horizontal', 
-                 legend.position = 'top')
-
   
   # PC data
   PC_Scores <- cbind(pcatraindata[,1:4], Y1, Y2, Y3) %>% as.data.frame()
@@ -131,9 +123,9 @@ PC_QD_Analysis1<-function(Training, Testing){
   levene_result_Y3 = leveneTest(Y3 ~ Series, levene_data)
   
   # QDA
-  QDA_test_data = subset(DA_data, select = -c(Index, Concentration, Replicate)) 
+  QDA_data = subset(DA_data, select = -c(Index, Concentration, Replicate)) 
   
-  qda_results <- qda(Series~., QDA_test_data)
+  qda_results <- qda(Series~., QDA_data)
   
   
   #########################################################################################################    
