@@ -5,7 +5,7 @@ Testing<-read_csv("Testing Data.csv") # This is for testing set
 #####################################################################################################
 
 # Function for Data analysis
-Data_Analysis<-function(Training, Testing){
+PC_QD_Analysis1<-function(Training, Testing){
   
   ## Training Data prep
   Training <- rename(Training, Concentration = `Palm olein concentration(C)`, 
@@ -63,6 +63,17 @@ Data_Analysis<-function(Training, Testing){
   ######################################################################################################
   ## PCA Analysis
   
+  # Box plot
+  
+  # data set for box plot
+  data_boxplot <- pcatraindata %>% pivot_longer(cols = 5:ncol(pcatraindata), names_to = "W", 
+                                           values_to = "A")
+  
+  # Box plot
+  boxplot <- data_boxplot %>% ggplot(aes(x = A, y = W)) + geom_boxplot() +
+    xlab("Absorption") + ylab("Wave Number (cm-1)")
+ 
+  
   # PC calculation
   pc <- prcomp(pcatraindata_v2,
                center = TRUE,
@@ -87,6 +98,15 @@ Data_Analysis<-function(Training, Testing){
   Y1 <- pc$x[ , 1]
   Y2 <- pc$x[ , 2]
   Y3 <- pc$x[ , 3]
+  
+  # Bi plot of 1st two PCs
+  biplot <- ggbiplot(pc, obs.scale = 1, var.scale = 1, 
+                groups = pcatraindata$Series, ellipse = TRUE, 
+                circle = TRUE)
+  biplot <- biplot + scale_color_discrete(name = '')
+  biplot <- biplot + theme(legend.direction = 'horizontal', 
+                 legend.position = 'top')
+
   
   # PC data
   PC_Scores <- cbind(pcatraindata[,1:4], Y1, Y2, Y3) %>% as.data.frame()
@@ -139,14 +159,14 @@ Data_Analysis<-function(Training, Testing){
   #########################################################################################################    
   
   ## Outputs
-  list(`Scree Plot`=p, `PCA Summary`=Summary_PCA,`Levene test for PCA1` =levene_result_Y1,
+  list(`Box Plot`=  boxplot, `Scree Plot`=p, `PCA Summary`=Summary_PCA, `Bi Plot`=biplot, `Levene test for PCA1` =levene_result_Y1,
        `Levene test for PCA2` =levene_result_Y2, `Levene test for PCA3` =levene_result_Y3,
        `QDA Results`= qda_results, `QDA Prediction`= qda_prediction_df, `Confusion Matrix`= confusion_matrix)
 }
 
 #######################################################################################################
 
-Data_Analysis(Training, Testing)
+PC_QD_Analysis1(Training, Testing)
 
 
 

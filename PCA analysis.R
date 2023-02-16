@@ -6,7 +6,8 @@ data_boxplot <- pcadata %>% pivot_longer(cols = 5:ncol(pcadata), names_to = "W",
                                          values_to = "A")
 
 # Box plot
-plot <- data_boxplot %>% ggplot(aes(x = A, y = W)) + geom_boxplot() 
+plot <- data_boxplot %>% ggplot(aes(x = A, y = W)) + geom_boxplot() +
+  xlab("Absorption") + ylab("Wave Number (cm-1)")
 plot
 
 # variances are different for each variable. Therefore use correlation matrix for PCA.
@@ -81,7 +82,25 @@ pred <- predict(qda_results, test_pcs3)$class
 
 
 
+# Biplot
+library(devtools)
+install_github("vqv/ggbiplot")
+library(ggbiplot)
+g <- ggbiplot(pc, obs.scale = 1, var.scale = 1, 
+              groups = pcadata$Series, ellipse = TRUE, 
+              circle = TRUE)
+g <- g + scale_color_discrete(name = '')
+g <- g + theme(legend.direction = 'horizontal', 
+               legend.position = 'top')
+print(g)
 
+g2 <- ggbiplot(pc, choices = 2:3, obs.scale = 1, var.scale = 1, 
+              groups = pcadata$Series, ellipse = TRUE, 
+              circle = TRUE)
+g2 <- g2 + scale_color_discrete(name = '')
+g2 <- g2 + theme(legend.direction = 'horizontal', 
+               legend.position = 'top')
+print(g)
 
 
 
