@@ -2,7 +2,7 @@
 Training<-read_csv("Training Data.csv") # This is for training set
 Prediction<-read_csv("Prediction Data.csv") # This is for prediction set
 
-#####################################################################################################
+#====================================================================================
 
 # Function for Data analysis
 PC_QD_Analysis2<-function(Training, Prediction){
@@ -108,7 +108,9 @@ PC_QD_Analysis2<-function(Training, Prediction){
   list( `QDA Prediction`= qda_prediction_df)
 }
 
-#######################################################################################################
+#====================================================================================
+
+# Inputs for function
 
 PC_QD_Analysis2(Training, Prediction)
 
