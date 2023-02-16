@@ -2,7 +2,7 @@
 Training<-read_csv("Training Data.csv") # This is for training set
 Testing<-read_csv("Testing Data.csv") # This is for testing set
 
-#####################################################################################################
+#===============================================================================================
 
 # Function for Data analysis
 PC_QD_Analysis1<-function(Training, Testing){
@@ -156,7 +156,7 @@ PC_QD_Analysis1<-function(Training, Testing){
        `QDA Results`= qda_results, `QDA Prediction`= qda_prediction_df, `Confusion Matrix`= confusion_matrix)
 }
 
-#######################################################################################################
+#==================================================================================================
 
 PC_QD_Analysis1(Training, Testing)
 
