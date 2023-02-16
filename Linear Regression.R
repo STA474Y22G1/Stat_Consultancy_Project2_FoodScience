@@ -33,6 +33,7 @@ qqline(res)
 #==============================================================================
 
 #fit simple linear regression model
+             # Y~X
 model1 <- lm(Concentration~Absorbtion, data = PLS_data)
 
 #view model summary

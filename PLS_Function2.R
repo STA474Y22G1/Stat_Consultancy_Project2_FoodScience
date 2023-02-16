@@ -2,8 +2,6 @@
 Training<-read_csv("Training Data.csv") # This is for training set
 Validation <- read_csv("Validation.csv") # This is for validation set
 
-Validation <-read_csv("Testing Data.csv")
-
 #====================================================================================
 
 # Function 
@@ -32,8 +30,6 @@ PLS_Function2 <-function(Training, Validation){
   PLStraindata <- PLStraindata %>% separate(Concentration, into = c("Concentration", "percent"))
   PLStraindata$Concentration <- as.numeric(PLStraindata$Concentration)/100
   
-  PLStraindata <- PLStraindata %>% filter(Series == "Adulterated")  
-  
   PLStraindata <- PLStraindata %>% subset(select = -c(Index, Series, percent, Replicate))
   
   
@@ -41,17 +37,15 @@ PLS_Function2 <-function(Training, Validation){
   
   # Fitting model for training data set
   
-  # Split the column names in X and Y
-  X_colnames <- colnames(PLStraindata)[2:39]
-  Y_colnames <- colnames(PLStraindata)[1]
+  model <- train(
+    Concentration ~ .,
+    data = PLStraindata,
+    method = 'pls'
+  )
+  model
   
-  # Split train data into matrices
-  X_train_matrix <- as.matrix(PLStraindata[X_colnames])
-  Y_train_matrix <- as.matrix(PLStraindata[Y_colnames])
+  plot(model)
   
-  # PLS Regression
-  pls <- plsr(Y_train_matrix ~ X_train_matrix, scale=TRUE, validation="CV")
-   
   ####################################################################################
   
   # Prediction for validation set
@@ -69,7 +63,7 @@ PLS_Function2 <-function(Training, Validation){
   filterValidationdata5<-rbind(filterValidationdata2, filterValidationdata3, filterValidationdata4) 
   
   # Selecting adulterated
-  AdultValidationdata <-filterValidationdata5 %>% filter(Series=="Adulterated")
+  AdultValidationdata <-filterValidationdata5 #%>% filter(Series=="Adulterated")
   
   
   # Putting PCA data in wider format
@@ -80,23 +74,29 @@ PLS_Function2 <-function(Training, Validation){
   PLSValidationdata <- PLSValidationdata %>% separate(Concentration, into = c("Concentration", "percent"))
   PLSValidationdata$Concentration <- as.numeric(PLSValidationdata$Concentration)/100
   
-  PLSValidationdata <- PLSValidationdata %>% filter(Series == "Adulterated")  
-  
-  PLSValidationdata <- PLSValidationdata %>% subset(select = -c(Index, Series, percent, Replicate))
+  PLSValidationdata <- PLSValidationdata %>% subset(select = -c(Index, percent, Replicate))
+  ncolplsvalidation<-ncol(PLSValidationdata)
   
   ########################################################################################
   
   ## Prediction for validation dataset
   
-  # prediction
-  pcr_validpred <- predict(pls, PLSValidationdata[,2:39], ncomp=8)
-  validpredicted_PCR <- pcr_validpred*100
+  predictions = predict(model, newdata = PLSValidationdata[,2:ncolplsvalidation])
+  predicted_PCR <- predictions*100
+  
+  predictionTable <- data.frame(Series = PLSValidationdata$Series, `Predicted Concentration` = predicted_PCR)
+  
+  # RMSE
+  sqrt(mean((PLSValidationdata$Concentration - predictions)^2))
+  
+  # R2
+  cor(PLSValidationdata$Concentration, predictions) ^ 2
   
   #########################################################################################
   
   ## Outputs
   
-  list(`Predicted values for validation set` = validpredicted_PCR)
+  list(`Predicted values for validation set` = predictionTable)
 }
 
 
@@ -105,3 +105,4 @@ PLS_Function2 <-function(Training, Validation){
 # Inputs for function
 
 PLS_Function2(Training, Validation)
+
