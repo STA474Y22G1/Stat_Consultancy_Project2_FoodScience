@@ -19,7 +19,7 @@ PLS_Analysis2 <-function(Training, Validation){
   filtertraindata5<-rbind(filtertraindata2, filtertraindata3, filtertraindata4) 
   
   # Selecting adulterated
-  Adulttraindata <-filtertraindata5 %>% filter(Series=="Adulterated")
+  Adulttraindata <-filtertraindata5 
   
   
   # Putting PCA data in wider format
@@ -61,7 +61,7 @@ PLS_Analysis2 <-function(Training, Validation){
   filterValidationdata5<-rbind(filterValidationdata2, filterValidationdata3, filterValidationdata4) 
   
   # Selecting adulterated
-  AdultValidationdata <-filterValidationdata5 #%>% filter(Series=="Adulterated")
+  AdultValidationdata <-filterValidationdata5 
   
   
   # Putting PCA data in wider format

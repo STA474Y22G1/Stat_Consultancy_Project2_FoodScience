@@ -19,7 +19,7 @@ PLS_Analysis1<-function(Training, Testing){
   filtertraindata5<-rbind(filtertraindata2, filtertraindata3, filtertraindata4) 
   
   # Selecting adulterated
-  Adulttraindata <-filtertraindata5 #%>% filter(Series=="Adulterated")
+  Adulttraindata <-filtertraindata5 
   
   
   # Putting PCA data in wider format
@@ -48,7 +48,7 @@ PLS_Analysis1<-function(Training, Testing){
   filtertestdata5<-rbind(filtertestdata2, filtertestdata3, filtertestdata4) 
   
   # Selecting adulterated
-  Adulttestdata <-filtertestdata5 #%>% filter(Series=="Adulterated")
+  Adulttestdata <-filtertestdata5 
   
   
   # Putting PCA data in wider format
@@ -66,6 +66,7 @@ PLS_Analysis1<-function(Training, Testing){
   
   # Fitting model for training data set
   
+  set.seed(123)
   model <- train(
     Concentration ~ .,
     data = PLStraindata,
@@ -73,7 +74,7 @@ PLS_Analysis1<-function(Training, Testing){
   )
  
   # Summarize the final model
-  s <- summary(model$finalModel)
+  summary <- summary(model$finalModel)
   
   ####################################################################################
   ## Prediction for testing dataset
@@ -94,8 +95,9 @@ PLS_Analysis1<-function(Training, Testing){
   
   ## Outputs
   
-  list(PLS_Model = model, `PLS_Summary`= s, `Predicted values for testing set` = predictionTable, 
+  list(PLS_Model = model, `Predicted values for testing set` = predictionTable, 
        `Model Performance` = peformance_values)
+ 
   
   
 }
