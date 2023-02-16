@@ -115,6 +115,7 @@ Data_Analysis<-function(Training, Testing){
   
   qda_results <- qda(Series~., QDA_test_data)
   
+  
   #########################################################################################################    
   
   ## Prediction from testing set
@@ -126,17 +127,21 @@ Data_Analysis<-function(Training, Testing){
                           Y3 = test_pcs[,3])
   test_pcs3 <- as.data.frame(cbind(Series=pcatestdata$Series, test_pcs3))
   
-  
   # Confusion Matrix 
   pred <- predict(qda_results, test_pcs3)$class
   
   confusion_matrix <- table(Predicted = pred, Actual = test_pcs3$Series)
   
+  # Prediction Data Frame
+  qda_prediction_df <- data.frame("Actual_Group" = test_pcs3$Series, "Predicted_Group" = pred)
+  
   
   #########################################################################################################    
   
   ## Outputs
-  list(`Scree Plot`=p, `PCA Summary`=Summary_PCA,`Levene test for PCA1` =levene_result_Y1, `Levene test for PCA2` =levene_result_Y2, `Levene test for PCA3` =levene_result_Y3, `QDA Results`= qda_results, `Confusion Matrix`= confusion_matrix)
+  list(`Scree Plot`=p, `PCA Summary`=Summary_PCA,`Levene test for PCA1` =levene_result_Y1,
+       `Levene test for PCA2` =levene_result_Y2, `Levene test for PCA3` =levene_result_Y3,
+       `QDA Results`= qda_results, `QDA Prediction`= qda_prediction_df, `Confusion Matrix`= confusion_matrix)
 }
 
 #######################################################################################################
