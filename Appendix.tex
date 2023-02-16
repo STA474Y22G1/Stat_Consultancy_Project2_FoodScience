@@ -1,0 +1,646 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Appendix},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Appendix}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+This section includes the codes related to the 4 functions produced for
+the client.
+
+\hypertarget{loading-packages}{%
+\section{Loading Packages}\label{loading-packages}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(GGally)}
+\FunctionTok{library}\NormalTok{(plotly)}
+\FunctionTok{library}\NormalTok{(MASS)}
+\FunctionTok{library}\NormalTok{(car)}
+\FunctionTok{library}\NormalTok{(pls)}
+\FunctionTok{library}\NormalTok{(caret)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{pc_qd_analysis1}{%
+\section{PC\_QD\_Analysis1}\label{pc_qd_analysis1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Importing Data setets}
+\NormalTok{Training}\OtherTok{\textless{}{-}}\FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Training Data.csv"}\NormalTok{) }\CommentTok{\# This is for training set}
+\NormalTok{Testing}\OtherTok{\textless{}{-}}\FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Testing Data.csv"}\NormalTok{) }\CommentTok{\# This is for testing set}
+
+\CommentTok{\#===============================================================================================}
+
+\CommentTok{\# Function for Data analysis}
+\NormalTok{PC\_QD\_Analysis1}\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(Training, Testing)\{}
+  
+  \DocumentationTok{\#\# Training Data prep}
+\NormalTok{  Training }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Training, }\AttributeTok{Concentration =} \StringTok{\textasciigrave{}}\AttributeTok{Palm olein concentration(C)}\StringTok{\textasciigrave{}}\NormalTok{, }
+                     \AttributeTok{Replicate =} \StringTok{\textasciigrave{}}\AttributeTok{Replicate No}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{W=}\StringTok{\textasciigrave{}}\AttributeTok{Wave Number (cm{-}1)(W)}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{A=}\StringTok{\textasciigrave{}}\AttributeTok{Absorption (A)}\StringTok{\textasciigrave{}}\NormalTok{)}
+  
+  \CommentTok{\# Filtering Wavelenghts}
+\NormalTok{  filtertraindata2}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{3000} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{3010}\NormalTok{)}
+\NormalTok{  filtertraindata3}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1650} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1660}\NormalTok{)}
+\NormalTok{  filtertraindata4}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1105} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1120}\NormalTok{)}
+  
+  \CommentTok{\# Combining filtered datasets}
+\NormalTok{  filtertraindata5}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(filtertraindata2, filtertraindata3, filtertraindata4) }
+  
+  \CommentTok{\# Selecting VCO and adulterated}
+\NormalTok{  VCOtraindata}\OtherTok{\textless{}{-}}\NormalTok{filtertraindata5 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Series}\SpecialCharTok{==}\StringTok{"Pure VCO"}\NormalTok{)}
+\NormalTok{  Adulttraindata}\OtherTok{\textless{}{-}}\NormalTok{filtertraindata5 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Series}\SpecialCharTok{==}\StringTok{"Adulterated"}\NormalTok{)}
+  
+  \CommentTok{\# Combining datasets}
+\NormalTok{  PCAtraindata}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(VCOtraindata, Adulttraindata)}
+  
+  \CommentTok{\# Putting PCA data in wider format}
+\NormalTok{  PCAtraindata}\OtherTok{\textless{}{-}}\FunctionTok{pivot\_wider}\NormalTok{(PCAtraindata, }\AttributeTok{names\_from =}\NormalTok{ W, }\AttributeTok{values\_from =}\NormalTok{ A)}
+\NormalTok{  PCAtraindata}\OtherTok{\textless{}{-}}\NormalTok{PCAtraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Index=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{relocate}\NormalTok{(Index, }\AttributeTok{.before =}\NormalTok{ Series)}
+  
+\NormalTok{  pcatraindata }\OtherTok{\textless{}{-}}\NormalTok{  PCAtraindata}
+\NormalTok{  pcatraindata\_v2 }\OtherTok{\textless{}{-}}\NormalTok{ pcatraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(}\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Index, Series, Concentration, Replicate))}
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  \CommentTok{\# Testing data prep}
+\NormalTok{  Testing }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Testing, }\AttributeTok{Concentration =} \StringTok{\textasciigrave{}}\AttributeTok{Palm olein concentration(C)}\StringTok{\textasciigrave{}}\NormalTok{, }
+                    \AttributeTok{Replicate =} \StringTok{\textasciigrave{}}\AttributeTok{Replicate No}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{W=}\StringTok{\textasciigrave{}}\AttributeTok{Wave Number (cm{-}1)(W)}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{A=}\StringTok{\textasciigrave{}}\AttributeTok{Absorption (A)}\StringTok{\textasciigrave{}}\NormalTok{)}
+  
+  \CommentTok{\# Filtering Wavelenghts}
+\NormalTok{  filtertestdata2}\OtherTok{\textless{}{-}}\NormalTok{Testing }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{3000} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{3010}\NormalTok{)}
+\NormalTok{  filtertestdata3}\OtherTok{\textless{}{-}}\NormalTok{Testing }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1650} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1660}\NormalTok{)}
+\NormalTok{  filtertestdata4}\OtherTok{\textless{}{-}}\NormalTok{Testing }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1105} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1120}\NormalTok{)}
+  
+  \CommentTok{\# Combining filtered datasets}
+\NormalTok{  filtertestdata5}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(filtertestdata2, filtertestdata3, filtertestdata4) }
+  
+  \CommentTok{\# Selecting VCO and adulterated}
+\NormalTok{  VCOtestdata}\OtherTok{\textless{}{-}}\NormalTok{filtertestdata5 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Series}\SpecialCharTok{==}\StringTok{"Pure VCO"}\NormalTok{)}
+\NormalTok{  Adulttestdata}\OtherTok{\textless{}{-}}\NormalTok{filtertestdata5 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Series}\SpecialCharTok{==}\StringTok{"Adulterated"}\NormalTok{)}
+  
+  \CommentTok{\# Combining datasets}
+\NormalTok{  PCAtestdata}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(VCOtestdata, Adulttestdata)}
+  
+  \CommentTok{\# Putting PCA data in wider format}
+\NormalTok{  PCAtestdata}\OtherTok{\textless{}{-}}\FunctionTok{pivot\_wider}\NormalTok{(PCAtestdata, }\AttributeTok{names\_from =}\NormalTok{ W, }\AttributeTok{values\_from =}\NormalTok{ A)}
+\NormalTok{  PCAtestdata}\OtherTok{\textless{}{-}}\NormalTok{PCAtestdata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Index=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{relocate}\NormalTok{(Index, }\AttributeTok{.before =}\NormalTok{ Series)}
+  
+\NormalTok{  pcatestdata }\OtherTok{\textless{}{-}}\NormalTok{  PCAtestdata}
+\NormalTok{  pcatestdata\_v2 }\OtherTok{\textless{}{-}}\NormalTok{ pcatestdata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(}\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Index, Series, Concentration, Replicate))}
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  \DocumentationTok{\#\# PCA Analysis}
+  
+  \CommentTok{\# Box plot}
+  
+  \CommentTok{\# data set for box plot}
+\NormalTok{  data\_boxplot }\OtherTok{\textless{}{-}}\NormalTok{ pcatraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \DecValTok{5}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(pcatraindata), }\AttributeTok{names\_to =} \StringTok{"W"}\NormalTok{, }
+                                           \AttributeTok{values\_to =} \StringTok{"A"}\NormalTok{)}
+  
+  \CommentTok{\# Box plot}
+\NormalTok{  boxplot }\OtherTok{\textless{}{-}}\NormalTok{ data\_boxplot }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ A, }\AttributeTok{y =}\NormalTok{ W)) }\SpecialCharTok{+} \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{xlab}\NormalTok{(}\StringTok{"Absorption"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Wave Number (cm{-}1)"}\NormalTok{)}
+ 
+  
+  \CommentTok{\# PC calculation}
+\NormalTok{  pc }\OtherTok{\textless{}{-}} \FunctionTok{prcomp}\NormalTok{(pcatraindata\_v2,}
+               \AttributeTok{center =} \ConstantTok{TRUE}\NormalTok{,}
+               \AttributeTok{scale. =} \ConstantTok{TRUE}\NormalTok{)}
+  
+  \CommentTok{\# Scree Plot}
+  \CommentTok{\#calculate total variance explained by each principal component}
+\NormalTok{  var\_explained }\OtherTok{\textless{}{-}}\NormalTok{ pc}\SpecialCharTok{$}\NormalTok{sdev}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(pc}\SpecialCharTok{$}\NormalTok{sdev}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+  
+  \CommentTok{\#create scree plot}
+\NormalTok{  p}\OtherTok{\textless{}{-}}\FunctionTok{qplot}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{38}\NormalTok{), var\_explained) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+} 
+    \FunctionTok{xlab}\NormalTok{(}\StringTok{"Principal Component"}\NormalTok{) }\SpecialCharTok{+} 
+    \FunctionTok{ylab}\NormalTok{(}\StringTok{"Variance Explained"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Scree Plot"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+  
+  \CommentTok{\# Summary of PCA}
+\NormalTok{  Summary\_PCA}\OtherTok{\textless{}{-}}\FunctionTok{summary}\NormalTok{(pc)}
+  
+  \CommentTok{\# extracting PCA scores}
+\NormalTok{  Y1 }\OtherTok{\textless{}{-}}\NormalTok{ pc}\SpecialCharTok{$}\NormalTok{x[ , }\DecValTok{1}\NormalTok{]}
+\NormalTok{  Y2 }\OtherTok{\textless{}{-}}\NormalTok{ pc}\SpecialCharTok{$}\NormalTok{x[ , }\DecValTok{2}\NormalTok{]}
+\NormalTok{  Y3 }\OtherTok{\textless{}{-}}\NormalTok{ pc}\SpecialCharTok{$}\NormalTok{x[ , }\DecValTok{3}\NormalTok{]}
+  
+  
+  \CommentTok{\# PC data}
+\NormalTok{  PC\_Scores }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(pcatraindata[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{], Y1, Y2, Y3) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as.data.frame}\NormalTok{()}
+  
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \DocumentationTok{\#\# DA Analysis}
+  
+  \CommentTok{\# load the data}
+\NormalTok{  DA\_data }\OtherTok{\textless{}{-}}\NormalTok{ PC\_Scores}
+  
+  \CommentTok{\# Group into Pure VCO and Adulterated}
+\NormalTok{  Pure\_VCO }\OtherTok{\textless{}{-}}\NormalTok{ DA\_data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Series }\SpecialCharTok{==} \StringTok{"Pure VCO"}\NormalTok{)}
+\NormalTok{  Adulterated }\OtherTok{\textless{}{-}}\NormalTok{ DA\_data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Series }\SpecialCharTok{==} \StringTok{"Adulterated"}\NormalTok{)}
+  
+  \CommentTok{\# Checking the Assumption of Equal Covariance }
+  \CommentTok{\# Levene’s test}
+\NormalTok{  levene\_data }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(Pure\_VCO, Adulterated)}
+\NormalTok{  levene\_result\_Y1 }\OtherTok{=} \FunctionTok{leveneTest}\NormalTok{(Y1 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Series, levene\_data)}
+\NormalTok{  levene\_result\_Y2 }\OtherTok{=} \FunctionTok{leveneTest}\NormalTok{(Y2 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Series, levene\_data)}
+\NormalTok{  levene\_result\_Y3 }\OtherTok{=} \FunctionTok{leveneTest}\NormalTok{(Y3 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Series, levene\_data)}
+  
+  \CommentTok{\# QDA}
+\NormalTok{  QDA\_data }\OtherTok{=} \FunctionTok{subset}\NormalTok{(DA\_data, }\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Index, Concentration, Replicate)) }
+  
+\NormalTok{  qda\_results }\OtherTok{\textless{}{-}} \FunctionTok{qda}\NormalTok{(Series}\SpecialCharTok{\textasciitilde{}}\NormalTok{., QDA\_data)}
+  
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#   }
+  
+  \DocumentationTok{\#\# Prediction from testing set}
+  
+  \CommentTok{\# Predicting PCs}
+\NormalTok{  test\_pcs }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(pc, }\AttributeTok{newdata =}\NormalTok{ pcatestdata\_v2)}
+\NormalTok{  test\_pcs3 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Y1 =}\NormalTok{ test\_pcs[,}\DecValTok{1}\NormalTok{],}
+                          \AttributeTok{Y2 =}\NormalTok{ test\_pcs[,}\DecValTok{2}\NormalTok{],}
+                          \AttributeTok{Y3 =}\NormalTok{ test\_pcs[,}\DecValTok{3}\NormalTok{])}
+\NormalTok{  test\_pcs3 }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\AttributeTok{Series=}\NormalTok{pcatestdata}\SpecialCharTok{$}\NormalTok{Series, test\_pcs3))}
+  
+  \CommentTok{\# Confusion Matrix }
+\NormalTok{  pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(qda\_results, test\_pcs3)}\SpecialCharTok{$}\NormalTok{class}
+  
+\NormalTok{  confusion\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}\AttributeTok{Predicted =}\NormalTok{ pred, }\AttributeTok{Actual =}\NormalTok{ test\_pcs3}\SpecialCharTok{$}\NormalTok{Series)}
+  
+  \CommentTok{\# Prediction Data Frame}
+\NormalTok{  qda\_prediction\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\StringTok{"Actual\_Group"} \OtherTok{=}\NormalTok{ test\_pcs3}\SpecialCharTok{$}\NormalTok{Series, }\StringTok{"Predicted\_Group"} \OtherTok{=}\NormalTok{ pred)}
+  
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#  }
+  
+  \DocumentationTok{\#\# Outputs}
+  \FunctionTok{list}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Box Plot}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{  boxplot, }\StringTok{\textasciigrave{}}\AttributeTok{Scree Plot}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{p, }\StringTok{\textasciigrave{}}\AttributeTok{PCA Summary}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{Summary\_PCA, }\StringTok{\textasciigrave{}}\AttributeTok{Bi Plot}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{biplot, }\StringTok{\textasciigrave{}}\AttributeTok{Levene test for PCA1}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{levene\_result\_Y1,}
+       \StringTok{\textasciigrave{}}\AttributeTok{Levene test for PCA2}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{levene\_result\_Y2, }\StringTok{\textasciigrave{}}\AttributeTok{Levene test for PCA3}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{levene\_result\_Y3,}
+       \StringTok{\textasciigrave{}}\AttributeTok{QDA Results}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{ qda\_results, }\StringTok{\textasciigrave{}}\AttributeTok{QDA Prediction}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{ qda\_prediction\_df, }\StringTok{\textasciigrave{}}\AttributeTok{Confusion Matrix}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{ confusion\_matrix)}
+\NormalTok{\}}
+
+\CommentTok{\#===============================================================================================}
+
+\FunctionTok{PC\_QD\_Analysis1}\NormalTok{(Training, Testing)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{pc_qd_analysis2}{%
+\section{PC\_QD\_Analysis2}\label{pc_qd_analysis2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Importing Data sets}
+\NormalTok{Training}\OtherTok{\textless{}{-}}\FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Training Data.csv"}\NormalTok{) }\CommentTok{\# This is for training set}
+\NormalTok{Prediction}\OtherTok{\textless{}{-}}\FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Prediction Data.csv"}\NormalTok{) }\CommentTok{\# This is for prediction set}
+
+\CommentTok{\#===============================================================================================}
+
+\CommentTok{\# Function for Data analysis}
+\NormalTok{PC\_QD\_Analysis2}\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(Training, Prediction)\{}
+  
+  \DocumentationTok{\#\# Training Data prep}
+\NormalTok{  Training }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Training, }\AttributeTok{Concentration =} \StringTok{\textasciigrave{}}\AttributeTok{Palm olein concentration(C)}\StringTok{\textasciigrave{}}\NormalTok{, }
+                     \AttributeTok{Replicate =} \StringTok{\textasciigrave{}}\AttributeTok{Replicate No}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{W=}\StringTok{\textasciigrave{}}\AttributeTok{Wave Number (cm{-}1)(W)}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{A=}\StringTok{\textasciigrave{}}\AttributeTok{Absorption (A)}\StringTok{\textasciigrave{}}\NormalTok{)}
+  
+  \CommentTok{\# Filtering Wavelenghts}
+\NormalTok{  filtertraindata2}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{3000} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{3010}\NormalTok{)}
+\NormalTok{  filtertraindata3}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1650} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1660}\NormalTok{)}
+\NormalTok{  filtertraindata4}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1105} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1120}\NormalTok{)}
+  
+  \CommentTok{\# Combining filtered datasets}
+\NormalTok{  filtertraindata5}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(filtertraindata2, filtertraindata3, filtertraindata4) }
+  
+  \CommentTok{\# Selecting VCO and adulterated}
+\NormalTok{  VCOtraindata}\OtherTok{\textless{}{-}}\NormalTok{filtertraindata5 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Series}\SpecialCharTok{==}\StringTok{"Pure VCO"}\NormalTok{)}
+\NormalTok{  Adulttraindata}\OtherTok{\textless{}{-}}\NormalTok{filtertraindata5 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Series}\SpecialCharTok{==}\StringTok{"Adulterated"}\NormalTok{)}
+  
+  \CommentTok{\# Combining datasets}
+\NormalTok{  PCAtraindata}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(VCOtraindata, Adulttraindata)}
+  
+  \CommentTok{\# Putting PCA data in wider format}
+\NormalTok{  PCAtraindata}\OtherTok{\textless{}{-}}\FunctionTok{pivot\_wider}\NormalTok{(PCAtraindata, }\AttributeTok{names\_from =}\NormalTok{ W, }\AttributeTok{values\_from =}\NormalTok{ A)}
+\NormalTok{  PCAtraindata}\OtherTok{\textless{}{-}}\NormalTok{PCAtraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Index=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{relocate}\NormalTok{(Index, }\AttributeTok{.before =}\NormalTok{ Series)}
+  
+\NormalTok{  pcatraindata }\OtherTok{\textless{}{-}}\NormalTok{  PCAtraindata}
+\NormalTok{  pcatraindata\_v2 }\OtherTok{\textless{}{-}}\NormalTok{ pcatraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(}\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Index, Series, Concentration, Replicate))}
+
+ \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \CommentTok{\# Validation data prep}
+\NormalTok{ Prediction }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Prediction, }\AttributeTok{Concentration =} \StringTok{\textasciigrave{}}\AttributeTok{Palm olein concentration(C)}\StringTok{\textasciigrave{}}\NormalTok{, }
+                    \AttributeTok{Replicate =} \StringTok{\textasciigrave{}}\AttributeTok{Replicate No}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{W=}\StringTok{\textasciigrave{}}\AttributeTok{Wave Number (cm{-}1)(W)}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{A=}\StringTok{\textasciigrave{}}\AttributeTok{Absorption (A)}\StringTok{\textasciigrave{}}\NormalTok{)}
+  
+  \CommentTok{\# Filtering Wavelengths}
+\NormalTok{  filterpredictiondata2}\OtherTok{\textless{}{-}}\NormalTok{Prediction }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{3000} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{3010}\NormalTok{)}
+\NormalTok{  filterpredictiondata3}\OtherTok{\textless{}{-}}\NormalTok{Prediction }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1650} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1660}\NormalTok{)}
+\NormalTok{  filterpredictiondata4}\OtherTok{\textless{}{-}}\NormalTok{Prediction }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1105} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1120}\NormalTok{)}
+  
+  \CommentTok{\# Combining filtered datasets}
+\NormalTok{  PCApredictiondata}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{( filterpredictiondata2, filterpredictiondata3, filterpredictiondata4) }
+ 
+  \CommentTok{\# Putting PCA data in wider format}
+\NormalTok{  PCApredictiondata}\OtherTok{\textless{}{-}}\FunctionTok{pivot\_wider}\NormalTok{( PCApredictiondata, }\AttributeTok{names\_from =}\NormalTok{ W, }\AttributeTok{values\_from =}\NormalTok{ A)}
+\NormalTok{  PCApredictiondata}\OtherTok{\textless{}{-}}\NormalTok{ PCApredictiondata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Index=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{relocate}\NormalTok{(Index, }\AttributeTok{.before =}\NormalTok{ Series)}
+  
+\NormalTok{  pcapredictiondata }\OtherTok{\textless{}{-}}\NormalTok{  PCApredictiondata}
+\NormalTok{  pcapredictiondata\_v2 }\OtherTok{\textless{}{-}}\NormalTok{  pcapredictiondata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(}\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Index, Series, Concentration, Replicate))}
+  
+  \FunctionTok{nrow}\NormalTok{(pcapredictiondata\_v2)}
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  \DocumentationTok{\#\# PCA Analysis}
+  
+  \CommentTok{\# PC calculation}
+\NormalTok{  pc }\OtherTok{\textless{}{-}} \FunctionTok{prcomp}\NormalTok{(pcatraindata\_v2,}
+               \AttributeTok{center =} \ConstantTok{TRUE}\NormalTok{,}
+               \AttributeTok{scale. =} \ConstantTok{TRUE}\NormalTok{)}
+  
+  \CommentTok{\# extracting PCA scores}
+\NormalTok{  Y1 }\OtherTok{\textless{}{-}}\NormalTok{ pc}\SpecialCharTok{$}\NormalTok{x[ , }\DecValTok{1}\NormalTok{]}
+\NormalTok{  Y2 }\OtherTok{\textless{}{-}}\NormalTok{ pc}\SpecialCharTok{$}\NormalTok{x[ , }\DecValTok{2}\NormalTok{]}
+\NormalTok{  Y3 }\OtherTok{\textless{}{-}}\NormalTok{ pc}\SpecialCharTok{$}\NormalTok{x[ , }\DecValTok{3}\NormalTok{]}
+  
+  \CommentTok{\# PC data}
+\NormalTok{  PC\_Scores }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(pcatraindata[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{], Y1, Y2, Y3) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as.data.frame}\NormalTok{()}
+  
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \DocumentationTok{\#\# DA Analysis}
+  
+  \CommentTok{\# load the data}
+\NormalTok{  DA\_data }\OtherTok{\textless{}{-}}\NormalTok{ PC\_Scores}
+  
+  \CommentTok{\# QDA}
+\NormalTok{  QDA\_data }\OtherTok{=} \FunctionTok{subset}\NormalTok{(DA\_data, }\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Index, Concentration, Replicate)) }
+\NormalTok{  qda\_results }\OtherTok{\textless{}{-}} \FunctionTok{qda}\NormalTok{(Series}\SpecialCharTok{\textasciitilde{}}\NormalTok{., QDA\_data)}
+ 
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# }
+  
+  \DocumentationTok{\#\# Prediction from prediction set}
+  
+  \CommentTok{\# Predicting PCs}
+\NormalTok{  prediction\_pcs }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(pc, }\AttributeTok{newdata =}\NormalTok{ pcapredictiondata\_v2)}
+\NormalTok{  prediction\_pcs3 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Y1 =}\NormalTok{ prediction\_pcs[,}\DecValTok{1}\NormalTok{],}
+                          \AttributeTok{Y2 =}\NormalTok{ prediction\_pcs[,}\DecValTok{2}\NormalTok{],}
+                          \AttributeTok{Y3 =}\NormalTok{ prediction\_pcs[,}\DecValTok{3}\NormalTok{])}
+  
+  
+  \CommentTok{\# Prediction }
+\NormalTok{  pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(qda\_results, prediction\_pcs3)}\SpecialCharTok{$}\NormalTok{class}
+  
+  
+  \CommentTok{\# Prediction Data Frame}
+\NormalTok{  qda\_prediction\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\StringTok{"Predicted\_Group"} \OtherTok{=}\NormalTok{ pred)}
+  
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \DocumentationTok{\#\# Outputs}
+  \FunctionTok{list}\NormalTok{( }\StringTok{\textasciigrave{}}\AttributeTok{QDA Prediction}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{ qda\_prediction\_df)}
+\NormalTok{\}}
+
+\CommentTok{\#===============================================================================================}
+
+\CommentTok{\# Inputs for function}
+
+\FunctionTok{PC\_QD\_Analysis2}\NormalTok{(Training, Prediction)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{pls_analysis-1}{%
+\section{PLS\_Analysis 1}\label{pls_analysis-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Importing Data setets}
+\NormalTok{Training}\OtherTok{\textless{}{-}}\FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Training Data.csv"}\NormalTok{) }\CommentTok{\# This is for training set}
+\NormalTok{Testing}\OtherTok{\textless{}{-}}\FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Testing Data.csv"}\NormalTok{) }\CommentTok{\# This is for testing set}
+
+\CommentTok{\#====================================================================================}
+
+\CommentTok{\# Function }
+\NormalTok{PLS\_Analysis1}\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(Training, Testing)\{}
+  \DocumentationTok{\#\# Training Data }
+\NormalTok{  Training }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Training, }\AttributeTok{Concentration =} \StringTok{\textasciigrave{}}\AttributeTok{Palm olein concentration(C)}\StringTok{\textasciigrave{}}\NormalTok{, }
+                     \AttributeTok{Replicate =} \StringTok{\textasciigrave{}}\AttributeTok{Replicate No}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{W=}\StringTok{\textasciigrave{}}\AttributeTok{Wave Number (cm{-}1)(W)}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{A=}\StringTok{\textasciigrave{}}\AttributeTok{Absorption (A)}\StringTok{\textasciigrave{}}\NormalTok{)}
+  
+  \CommentTok{\# Filtering Wavelenghts}
+\NormalTok{  filtertraindata2}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{3000} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{3010}\NormalTok{)}
+\NormalTok{  filtertraindata3}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1650} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1660}\NormalTok{)}
+\NormalTok{  filtertraindata4}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1105} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1120}\NormalTok{)}
+  
+  \CommentTok{\# Combining filtered datasets}
+\NormalTok{  filtertraindata5}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(filtertraindata2, filtertraindata3, filtertraindata4) }
+  
+  \CommentTok{\# Selecting adulterated}
+\NormalTok{  Adulttraindata }\OtherTok{\textless{}{-}}\NormalTok{filtertraindata5 }\CommentTok{\#\%\textgreater{}\% filter(Series=="Adulterated")}
+  
+  
+  \CommentTok{\# Putting PCA data in wider format}
+\NormalTok{  PLStraindata}\OtherTok{\textless{}{-}}\FunctionTok{pivot\_wider}\NormalTok{(Adulttraindata, }\AttributeTok{names\_from =}\NormalTok{ W, }\AttributeTok{values\_from =}\NormalTok{ A)}
+\NormalTok{  PLStraindata }\OtherTok{\textless{}{-}}\NormalTok{PLStraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Index=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{relocate}\NormalTok{(Index, }\AttributeTok{.before =}\NormalTok{ Series)}
+  
+  \CommentTok{\# Converting concentration to numeric vector in training data}
+\NormalTok{  PLStraindata }\OtherTok{\textless{}{-}}\NormalTok{ PLStraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{separate}\NormalTok{(Concentration, }\AttributeTok{into =} \FunctionTok{c}\NormalTok{(}\StringTok{"Concentration"}\NormalTok{, }\StringTok{"percent"}\NormalTok{))}
+\NormalTok{  PLStraindata}\SpecialCharTok{$}\NormalTok{Concentration }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(PLStraindata}\SpecialCharTok{$}\NormalTok{Concentration)}\SpecialCharTok{/}\DecValTok{100}
+  
+\NormalTok{  PLStraindata }\OtherTok{\textless{}{-}}\NormalTok{ PLStraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(}\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Index, Series, percent, Replicate))}
+  
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \DocumentationTok{\#\# Testing Data prep}
+\NormalTok{  Testing }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Testing, }\AttributeTok{Concentration =} \StringTok{\textasciigrave{}}\AttributeTok{Palm olein concentration(C)}\StringTok{\textasciigrave{}}\NormalTok{, }
+                    \AttributeTok{Replicate =} \StringTok{\textasciigrave{}}\AttributeTok{Replicate No}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{W=}\StringTok{\textasciigrave{}}\AttributeTok{Wave Number (cm{-}1)(W)}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{A=}\StringTok{\textasciigrave{}}\AttributeTok{Absorption (A)}\StringTok{\textasciigrave{}}\NormalTok{)}
+  
+  \CommentTok{\# Filtering Wavelenghts}
+\NormalTok{  filtertestdata2}\OtherTok{\textless{}{-}}\NormalTok{ Testing }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{3000} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{3010}\NormalTok{)}
+\NormalTok{  filtertestdata3}\OtherTok{\textless{}{-}}\NormalTok{ Testing }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1650} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1660}\NormalTok{)}
+\NormalTok{  filtertestdata4}\OtherTok{\textless{}{-}}\NormalTok{ Testing }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1105} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1120}\NormalTok{)}
+  
+  \CommentTok{\# Combining filtered datasets}
+\NormalTok{  filtertestdata5}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(filtertestdata2, filtertestdata3, filtertestdata4) }
+  
+  \CommentTok{\# Selecting adulterated}
+\NormalTok{  Adulttestdata }\OtherTok{\textless{}{-}}\NormalTok{filtertestdata5 }\CommentTok{\#\%\textgreater{}\% filter(Series=="Adulterated")}
+  
+  
+  \CommentTok{\# Putting PCA data in wider format}
+\NormalTok{  PLStestdata}\OtherTok{\textless{}{-}}\FunctionTok{pivot\_wider}\NormalTok{(Adulttestdata, }\AttributeTok{names\_from =}\NormalTok{ W, }\AttributeTok{values\_from =}\NormalTok{ A)}
+\NormalTok{  PLStestdata }\OtherTok{\textless{}{-}}\NormalTok{PLStestdata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Index=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{relocate}\NormalTok{(Index, }\AttributeTok{.before =}\NormalTok{ Series)}
+  
+  \CommentTok{\# Coverting concentration to numeric vector}
+\NormalTok{  PLStestdata }\OtherTok{\textless{}{-}}\NormalTok{ PLStestdata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{separate}\NormalTok{(Concentration, }\AttributeTok{into =} \FunctionTok{c}\NormalTok{(}\StringTok{"Concentration"}\NormalTok{, }\StringTok{"percent"}\NormalTok{))}
+\NormalTok{  PLStestdata}\SpecialCharTok{$}\NormalTok{Concentration }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(PLStestdata}\SpecialCharTok{$}\NormalTok{Concentration)}\SpecialCharTok{/}\DecValTok{100}
+  
+\NormalTok{  PLStestdata }\OtherTok{\textless{}{-}}\NormalTok{ PLStestdata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(}\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Index, percent, Replicate))}
+\NormalTok{  ncolplstest}\OtherTok{\textless{}{-}}\FunctionTok{ncol}\NormalTok{(PLStestdata)}
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \CommentTok{\# Fitting model for training data set}
+  
+\NormalTok{  model }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(}
+\NormalTok{    Concentration }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .,}
+    \AttributeTok{data =}\NormalTok{ PLStraindata,}
+    \AttributeTok{method =} \StringTok{\textquotesingle{}pls\textquotesingle{}}
+\NormalTok{  )}
+ 
+  \CommentTok{\# Summarize the final model}
+\NormalTok{  s }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(model}\SpecialCharTok{$}\NormalTok{finalModel)}
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  \DocumentationTok{\#\# Prediction for testing dataset}
+  
+\NormalTok{  predictions }\OtherTok{=} \FunctionTok{predict}\NormalTok{(model, }\AttributeTok{newdata =}\NormalTok{ PLStestdata[,}\DecValTok{3}\SpecialCharTok{:}\NormalTok{ ncolplstest])}
+\NormalTok{  predicted\_PLS }\OtherTok{\textless{}{-}}\NormalTok{ predictions}\SpecialCharTok{*}\DecValTok{100}
+  
+\NormalTok{  predictionTable }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Series =}\NormalTok{ PLStestdata}\SpecialCharTok{$}\NormalTok{Series, }\StringTok{\textasciigrave{}}\AttributeTok{Predicted Concentration}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ predicted\_PLS)}
+  
+  
+  \CommentTok{\# Model performance metrics}
+\NormalTok{  peformance\_values }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{RMSE =}\NormalTok{ caret}\SpecialCharTok{::}\FunctionTok{RMSE}\NormalTok{(predictions, PLStestdata}\SpecialCharTok{$}\NormalTok{Concentration),}
+    \AttributeTok{Rsquare =}\NormalTok{ caret}\SpecialCharTok{::}\FunctionTok{R2}\NormalTok{(predictions, PLStestdata}\SpecialCharTok{$}\NormalTok{Concentration)}
+\NormalTok{  )}
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \DocumentationTok{\#\# Outputs}
+  
+  \FunctionTok{list}\NormalTok{(}\AttributeTok{PLS\_Model =}\NormalTok{ model, }\StringTok{\textasciigrave{}}\AttributeTok{PLS\_Summary}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{ s, }\StringTok{\textasciigrave{}}\AttributeTok{Predicted values for testing set}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ predictionTable, }
+       \StringTok{\textasciigrave{}}\AttributeTok{Model Performance}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ peformance\_values)}
+  
+  
+\NormalTok{\}}
+
+\CommentTok{\#====================================================================================}
+
+\CommentTok{\# Inputs for function}
+
+\FunctionTok{PLS\_Analysis1}\NormalTok{(Training, Testing)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{pls_analysis2}{%
+\section{PLS\_Analysis2}\label{pls_analysis2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Importing Data setets}
+\NormalTok{Training}\OtherTok{\textless{}{-}}\FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Training Data.csv"}\NormalTok{) }\CommentTok{\# This is for training set}
+\NormalTok{Validation }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Prediction Data.csv"}\NormalTok{) }\CommentTok{\# This is for validation set}
+
+\CommentTok{\#====================================================================================}
+
+\CommentTok{\# Function }
+\NormalTok{PLS\_Analysis2 }\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(Training, Validation)\{}
+  \DocumentationTok{\#\# Training Data }
+\NormalTok{  Training }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Training, }\AttributeTok{Concentration =} \StringTok{\textasciigrave{}}\AttributeTok{Palm olein concentration(C)}\StringTok{\textasciigrave{}}\NormalTok{, }
+                     \AttributeTok{Replicate =} \StringTok{\textasciigrave{}}\AttributeTok{Replicate No}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{W=}\StringTok{\textasciigrave{}}\AttributeTok{Wave Number (cm{-}1)(W)}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{A=}\StringTok{\textasciigrave{}}\AttributeTok{Absorption (A)}\StringTok{\textasciigrave{}}\NormalTok{)}
+  
+  \CommentTok{\# Filtering Wavelenghts}
+\NormalTok{  filtertraindata2}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{3000} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{3010}\NormalTok{)}
+\NormalTok{  filtertraindata3}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1650} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1660}\NormalTok{)}
+\NormalTok{  filtertraindata4}\OtherTok{\textless{}{-}}\NormalTok{Training }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1105} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1120}\NormalTok{)}
+  
+  \CommentTok{\# Combining filtered datasets}
+\NormalTok{  filtertraindata5}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(filtertraindata2, filtertraindata3, filtertraindata4) }
+  
+  \CommentTok{\# Selecting adulterated}
+\NormalTok{  Adulttraindata }\OtherTok{\textless{}{-}}\NormalTok{filtertraindata5 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Series}\SpecialCharTok{==}\StringTok{"Adulterated"}\NormalTok{)}
+  
+  
+  \CommentTok{\# Putting PCA data in wider format}
+\NormalTok{  PLStraindata}\OtherTok{\textless{}{-}}\FunctionTok{pivot\_wider}\NormalTok{(Adulttraindata, }\AttributeTok{names\_from =}\NormalTok{ W, }\AttributeTok{values\_from =}\NormalTok{ A)}
+\NormalTok{  PLStraindata }\OtherTok{\textless{}{-}}\NormalTok{PLStraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Index=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{relocate}\NormalTok{(Index, }\AttributeTok{.before =}\NormalTok{ Series)}
+  
+  \CommentTok{\# Converting concentration to numeric vector in training data}
+\NormalTok{  PLStraindata }\OtherTok{\textless{}{-}}\NormalTok{ PLStraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{separate}\NormalTok{(Concentration, }\AttributeTok{into =} \FunctionTok{c}\NormalTok{(}\StringTok{"Concentration"}\NormalTok{, }\StringTok{"percent"}\NormalTok{))}
+\NormalTok{  PLStraindata}\SpecialCharTok{$}\NormalTok{Concentration }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(PLStraindata}\SpecialCharTok{$}\NormalTok{Concentration)}\SpecialCharTok{/}\DecValTok{100}
+  
+\NormalTok{  PLStraindata }\OtherTok{\textless{}{-}}\NormalTok{ PLStraindata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(}\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Index, Series, percent, Replicate))}
+  
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \CommentTok{\# Fitting model for training data set}
+  
+\NormalTok{  model }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(}
+\NormalTok{    Concentration }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .,}
+    \AttributeTok{data =}\NormalTok{ PLStraindata,}
+    \AttributeTok{method =} \StringTok{\textquotesingle{}pls\textquotesingle{}}
+\NormalTok{  )}
+  
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \CommentTok{\# Prediction for validation data set (Validation {-}{-}\textgreater{} Prediction Data)}
+  
+  \DocumentationTok{\#\# Validation Data }
+\NormalTok{  Validation }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(Validation, }\AttributeTok{Concentration =} \StringTok{\textasciigrave{}}\AttributeTok{Palm olein concentration(C)}\StringTok{\textasciigrave{}}\NormalTok{, }
+                       \AttributeTok{Replicate =} \StringTok{\textasciigrave{}}\AttributeTok{Replicate No}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{W=}\StringTok{\textasciigrave{}}\AttributeTok{Wave Number (cm{-}1)(W)}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{A=}\StringTok{\textasciigrave{}}\AttributeTok{Absorption (A)}\StringTok{\textasciigrave{}}\NormalTok{)}
+  
+  \CommentTok{\# Filtering Wavelenghts}
+\NormalTok{  filterValidationdata2}\OtherTok{\textless{}{-}}\NormalTok{Validation }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{3000} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{3010}\NormalTok{)}
+\NormalTok{  filterValidationdata3}\OtherTok{\textless{}{-}}\NormalTok{Validation }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1650} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1660}\NormalTok{)}
+\NormalTok{  filterValidationdata4}\OtherTok{\textless{}{-}}\NormalTok{Validation }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(W}\SpecialCharTok{\textgreater{}=}\DecValTok{1105} \SpecialCharTok{\&}\NormalTok{ W}\SpecialCharTok{\textless{}=}\DecValTok{1120}\NormalTok{)}
+  
+  \CommentTok{\# Combining filtered datasets}
+\NormalTok{  filterValidationdata5}\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(filterValidationdata2, filterValidationdata3, filterValidationdata4) }
+  
+  \CommentTok{\# Selecting adulterated}
+\NormalTok{  AdultValidationdata }\OtherTok{\textless{}{-}}\NormalTok{filterValidationdata5 }\CommentTok{\#\%\textgreater{}\% filter(Series=="Adulterated")}
+  
+  
+  \CommentTok{\# Putting PCA data in wider format}
+\NormalTok{  PLSValidationdata}\OtherTok{\textless{}{-}}\FunctionTok{pivot\_wider}\NormalTok{(AdultValidationdata, }\AttributeTok{names\_from =}\NormalTok{ W, }\AttributeTok{values\_from =}\NormalTok{ A)}
+\NormalTok{  PLSValidationdata }\OtherTok{\textless{}{-}}\NormalTok{PLSValidationdata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Index=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{relocate}\NormalTok{(Index, }\AttributeTok{.before =}\NormalTok{ Series)}
+  
+  \CommentTok{\# Converting concentration to numeric vector in training data}
+\NormalTok{  PLSValidationdata }\OtherTok{\textless{}{-}}\NormalTok{ PLSValidationdata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{separate}\NormalTok{(Concentration, }\AttributeTok{into =} \FunctionTok{c}\NormalTok{(}\StringTok{"Concentration"}\NormalTok{, }\StringTok{"percent"}\NormalTok{))}
+\NormalTok{  PLSValidationdata}\SpecialCharTok{$}\NormalTok{Concentration }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(PLSValidationdata}\SpecialCharTok{$}\NormalTok{Concentration)}\SpecialCharTok{/}\DecValTok{100}
+  
+\NormalTok{  PLSValidationdata }\OtherTok{\textless{}{-}}\NormalTok{ PLSValidationdata }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subset}\NormalTok{(}\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Index, percent, Replicate))}
+\NormalTok{  ncolplsvalidation}\OtherTok{\textless{}{-}}\FunctionTok{ncol}\NormalTok{(PLSValidationdata)}
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \DocumentationTok{\#\# Prediction for validation dataset}
+  
+\NormalTok{  predictions }\OtherTok{=} \FunctionTok{predict}\NormalTok{(model, }\AttributeTok{newdata =}\NormalTok{ PLSValidationdata[,}\DecValTok{2}\SpecialCharTok{:}\NormalTok{ncolplsvalidation])}
+\NormalTok{  predicted\_PCR }\OtherTok{\textless{}{-}}\NormalTok{ predictions}\SpecialCharTok{*}\DecValTok{100}
+  
+\NormalTok{  predictionTable }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Series Label}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ PLSValidationdata}\SpecialCharTok{$}\NormalTok{Series, }\StringTok{\textasciigrave{}}\AttributeTok{Predicted Concentration}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ predicted\_PCR)}
+  
+  \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+  
+  \DocumentationTok{\#\# Outputs}
+  
+  \FunctionTok{list}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Predicted values for validation set}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ predictionTable)}
+\NormalTok{\}}
+
+
+\CommentTok{\#====================================================================================}
+
+\CommentTok{\# Inputs for function}
+
+\FunctionTok{PLS\_Analysis2}\NormalTok{(Training, Validation)}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}

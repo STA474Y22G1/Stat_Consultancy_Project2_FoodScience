@@ -6,7 +6,7 @@ output: pdf_document
 ```{r setup, include=FALSE, warning=FALSE, message=FALSE, eval=FALSE, comment=NA}
 knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 ```
-This chapter includes the codes related to the 4 functions produced for the client
+This section includes the codes related to the 4 functions produced for the client.
 
 # Loading Packages
 ```{r, warning=FALSE, message=FALSE, eval=FALSE, comment=NA}
@@ -306,9 +306,223 @@ PC_QD_Analysis2<-function(Training, Prediction){
 
 PC_QD_Analysis2(Training, Prediction)
 
+```
 
+# PLS_Analysis 1
 
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
+# Importing Data setets
+Training<-read_csv("Training Data.csv") # This is for training set
+Testing<-read_csv("Testing Data.csv") # This is for testing set
+
+#====================================================================================
+
+# Function 
+PLS_Analysis1<-function(Training, Testing){
+  ## Training Data 
+  Training <- rename(Training, Concentration = `Palm olein concentration(C)`, 
+                     Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
+  
+  # Filtering Wavelenghts
+  filtertraindata2<-Training %>% filter(W>=3000 & W<=3010)
+  filtertraindata3<-Training %>% filter(W>=1650 & W<=1660)
+  filtertraindata4<-Training %>% filter(W>=1105 & W<=1120)
+  
+  # Combining filtered datasets
+  filtertraindata5<-rbind(filtertraindata2, filtertraindata3, filtertraindata4) 
+  
+  # Selecting adulterated
+  Adulttraindata <-filtertraindata5 #%>% filter(Series=="Adulterated")
+  
+  
+  # Putting PCA data in wider format
+  PLStraindata<-pivot_wider(Adulttraindata, names_from = W, values_from = A)
+  PLStraindata <-PLStraindata %>% mutate(Index=1:n()) %>% relocate(Index, .before = Series)
+  
+  # Converting concentration to numeric vector in training data
+  PLStraindata <- PLStraindata %>% separate(Concentration, into = c("Concentration", "percent"))
+  PLStraindata$Concentration <- as.numeric(PLStraindata$Concentration)/100
+  
+  PLStraindata <- PLStraindata %>% subset(select = -c(Index, Series, percent, Replicate))
+  
+  
+  ########################################################################################
+  
+  ## Testing Data prep
+  Testing <- rename(Testing, Concentration = `Palm olein concentration(C)`, 
+                    Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
+  
+  # Filtering Wavelenghts
+  filtertestdata2<- Testing %>% filter(W>=3000 & W<=3010)
+  filtertestdata3<- Testing %>% filter(W>=1650 & W<=1660)
+  filtertestdata4<- Testing %>% filter(W>=1105 & W<=1120)
+  
+  # Combining filtered datasets
+  filtertestdata5<-rbind(filtertestdata2, filtertestdata3, filtertestdata4) 
+  
+  # Selecting adulterated
+  Adulttestdata <-filtertestdata5 #%>% filter(Series=="Adulterated")
+  
+  
+  # Putting PCA data in wider format
+  PLStestdata<-pivot_wider(Adulttestdata, names_from = W, values_from = A)
+  PLStestdata <-PLStestdata %>% mutate(Index=1:n()) %>% relocate(Index, .before = Series)
+  
+  # Coverting concentration to numeric vector
+  PLStestdata <- PLStestdata %>% separate(Concentration, into = c("Concentration", "percent"))
+  PLStestdata$Concentration <- as.numeric(PLStestdata$Concentration)/100
+  
+  PLStestdata <- PLStestdata %>% subset(select = -c(Index, percent, Replicate))
+  ncolplstest<-ncol(PLStestdata)
+  
+  ########################################################################################
+  
+  # Fitting model for training data set
+  
+  model <- train(
+    Concentration ~ .,
+    data = PLStraindata,
+    method = 'pls'
+  )
+ 
+  # Summarize the final model
+  s <- summary(model$finalModel)
+  
+  ####################################################################################
+  ## Prediction for testing dataset
+  
+  predictions = predict(model, newdata = PLStestdata[,3: ncolplstest])
+  predicted_PLS <- predictions*100
+  
+  predictionTable <- data.frame(Series = PLStestdata$Series, `Predicted Concentration` = predicted_PLS)
+  
+  
+  # Model performance metrics
+  peformance_values <- data.frame(
+    RMSE = caret::RMSE(predictions, PLStestdata$Concentration),
+    Rsquare = caret::R2(predictions, PLStestdata$Concentration)
+  )
+  
+  #########################################################################################
+  
+  ## Outputs
+  
+  list(PLS_Model = model, `PLS_Summary`= s, `Predicted values for testing set` = predictionTable, 
+       `Model Performance` = peformance_values)
+  
+  
+}
+
+#====================================================================================
+
+# Inputs for function
+
+PLS_Analysis1(Training, Testing)
 
 
 ```
 
+# PLS_Analysis2
+
+```{r, , warning=FALSE, message=FALSE, eval=FALSE}
+# Importing Data setets
+Training<-read_csv("Training Data.csv") # This is for training set
+Validation <- read_csv("Prediction Data.csv") # This is for validation set
+
+#====================================================================================
+
+# Function 
+PLS_Analysis2 <-function(Training, Validation){
+  ## Training Data 
+  Training <- rename(Training, Concentration = `Palm olein concentration(C)`, 
+                     Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
+  
+  # Filtering Wavelenghts
+  filtertraindata2<-Training %>% filter(W>=3000 & W<=3010)
+  filtertraindata3<-Training %>% filter(W>=1650 & W<=1660)
+  filtertraindata4<-Training %>% filter(W>=1105 & W<=1120)
+  
+  # Combining filtered datasets
+  filtertraindata5<-rbind(filtertraindata2, filtertraindata3, filtertraindata4) 
+  
+  # Selecting adulterated
+  Adulttraindata <-filtertraindata5 %>% filter(Series=="Adulterated")
+  
+  
+  # Putting PCA data in wider format
+  PLStraindata<-pivot_wider(Adulttraindata, names_from = W, values_from = A)
+  PLStraindata <-PLStraindata %>% mutate(Index=1:n()) %>% relocate(Index, .before = Series)
+  
+  # Converting concentration to numeric vector in training data
+  PLStraindata <- PLStraindata %>% separate(Concentration, into = c("Concentration", "percent"))
+  PLStraindata$Concentration <- as.numeric(PLStraindata$Concentration)/100
+  
+  PLStraindata <- PLStraindata %>% subset(select = -c(Index, Series, percent, Replicate))
+  
+  
+  ########################################################################################
+  
+  # Fitting model for training data set
+  
+  model <- train(
+    Concentration ~ .,
+    data = PLStraindata,
+    method = 'pls'
+  )
+  
+  
+  ####################################################################################
+  
+  # Prediction for validation data set (Validation --> Prediction Data)
+  
+  ## Validation Data 
+  Validation <- rename(Validation, Concentration = `Palm olein concentration(C)`, 
+                       Replicate = `Replicate No`, W=`Wave Number (cm-1)(W)`, A=`Absorption (A)`)
+  
+  # Filtering Wavelenghts
+  filterValidationdata2<-Validation %>% filter(W>=3000 & W<=3010)
+  filterValidationdata3<-Validation %>% filter(W>=1650 & W<=1660)
+  filterValidationdata4<-Validation %>% filter(W>=1105 & W<=1120)
+  
+  # Combining filtered datasets
+  filterValidationdata5<-rbind(filterValidationdata2, filterValidationdata3, filterValidationdata4) 
+  
+  # Selecting adulterated
+  AdultValidationdata <-filterValidationdata5 #%>% filter(Series=="Adulterated")
+  
+  
+  # Putting PCA data in wider format
+  PLSValidationdata<-pivot_wider(AdultValidationdata, names_from = W, values_from = A)
+  PLSValidationdata <-PLSValidationdata %>% mutate(Index=1:n()) %>% relocate(Index, .before = Series)
+  
+  # Converting concentration to numeric vector in training data
+  PLSValidationdata <- PLSValidationdata %>% separate(Concentration, into = c("Concentration", "percent"))
+  PLSValidationdata$Concentration <- as.numeric(PLSValidationdata$Concentration)/100
+  
+  PLSValidationdata <- PLSValidationdata %>% subset(select = -c(Index, percent, Replicate))
+  ncolplsvalidation<-ncol(PLSValidationdata)
+  
+  ########################################################################################
+  
+  ## Prediction for validation dataset
+  
+  predictions = predict(model, newdata = PLSValidationdata[,2:ncolplsvalidation])
+  predicted_PCR <- predictions*100
+  
+  predictionTable <- data.frame(`Series Label` = PLSValidationdata$Series, `Predicted Concentration` = predicted_PCR)
+  
+  #########################################################################################
+  
+  ## Outputs
+  
+  list(`Predicted values for validation set` = predictionTable)
+}
+
+
+#====================================================================================
+
+# Inputs for function
+
+PLS_Analysis2(Training, Validation)
+
+```
