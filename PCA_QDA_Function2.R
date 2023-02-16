@@ -32,7 +32,7 @@ Data_Analysis<-function(Training, Prediction){
   
   pcatraindata <-  PCAtraindata
   pcatraindata_v2 <- pcatraindata %>% subset(select = -c(Index, Series, Concentration, Replicate))
-  
+
  ######################################################################################################
   
   # Validation data prep
@@ -54,7 +54,7 @@ Data_Analysis<-function(Training, Prediction){
   pcapredictiondata <-  PCApredictiondata
   pcapredictiondata_v2 <-  pcapredictiondata %>% subset(select = -c(Index, Series, Concentration, Replicate))
   
-  
+  nrow(pcapredictiondata_v2)
   ######################################################################################################
   ## PCA Analysis
   
